@@ -9,7 +9,7 @@ def find_empty(box):
     return None
 
 
-def valid(box, num, pos):
+def is_valid(box, num, pos):
     # Check row
     for i in range(len(box[0])):
         if box[pos[0]][i] == num and pos[1] != i:

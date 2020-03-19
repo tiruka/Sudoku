@@ -2,23 +2,15 @@ import pygame
 from app.box import Box
 from app.utils import (
     find_empty,
-    valid,
+    is_valid,
 )
+from app.problems import Problems
+
 
 class Grid:
-    board = [
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    ]
 
     def __init__(self, rows, cols, width, height, win):
+        self.board = Problems().random_problem()
         self.rows = rows
         self.cols = cols
         self.boxes = [[Box(self.board[i][j], i, j, width, height) for j in range(cols)] for i in range(rows)]
@@ -38,7 +30,7 @@ class Grid:
             self.boxes[row][col].set(val)
             self.update_model()
 
-            if valid(self.model, val, (row,col)) and self.solve():
+            if is_valid(self.model, val, (row,col)) and self.solve():
                 return True
             else:
                 self.boxes[row][col].set(0)
@@ -108,7 +100,7 @@ class Grid:
             row, col = find
 
         for i in range(1, 10):
-            if valid(self.model, i, (row, col)):
+            if is_valid(self.model, i, (row, col)):
                 self.model[row][col] = i
 
                 if self.solve():
@@ -119,6 +111,9 @@ class Grid:
         return False
 
     def solve_gui(self):
+        '''
+        Sovlve Sudoku automatically
+        '''
         find = find_empty(self.model)
         if not find:
             return True
@@ -126,7 +121,7 @@ class Grid:
             row, col = find
 
         for i in range(1, 10):
-            if valid(self.model, i, (row, col)):
+            if is_valid(self.model, i, (row, col)):
                 self.model[row][col] = i
                 self.boxes[row][col].set(i)
                 self.boxes[row][col].draw_change(self.win, True)
