@@ -1,6 +1,10 @@
 # Sudoku Algorithm
 
-Algorithms and visualizations of Sudoku
+Algorithm and visualization of Sudoku
+
+## Demo
+
+![Sudoku](https://github.com/tiruka/files/blob/master/sudoku/sudoku.gif)
 
 ## What is Sudoku
 
@@ -24,4 +28,4 @@ python gui_game.py
 ## How to Play
 
 Click a box and hit a number on your keybaord and press the ENTER key. If it fails, you will get a failure mark (like X in red). If it is correct, the number is put on.
-Is it to difficult to sovle? Don't worry! You can get a answer by pressing SPACE! You can see the dfs and backtraking algorithms is going to sovle it with tiral and erros.
+Is it to difficult to sovle? Don't worry! You can get a answer by pressing SPACE! You can see the DFS and backtraking algorithms is going to sovle it with tiral and erros.
